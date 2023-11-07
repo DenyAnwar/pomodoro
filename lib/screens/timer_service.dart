@@ -10,9 +10,65 @@ class TimerService extends ChangeNotifier {
   int goal = 0;
   String currentState = "FOCUS";
 
-  void start() {}
-  void pause() {}
-  void reset() {}
-  void selectTime() {}
-  void handleNextRound() {}
+  void start() {
+    timerPlaying = true;
+    timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      if (currentDuration == 0) {
+        handleNextRound();
+      } else {
+        currentDuration--;
+        notifyListeners();
+      }
+    });
+  }
+
+  void pause() {
+    timer.cancel();
+    timerPlaying = false;
+    notifyListeners();
+  }
+
+  void reset() {
+    timer.cancel();
+    currentState = "FOCUS";
+    currentDuration = 1500;
+    selectedTime = 1500;
+    rounds = 0;
+    goal = 0;
+    timerPlaying = false;
+    notifyListeners();
+  }
+
+  void selectTime(double seconds) {
+    selectedTime = seconds;
+    currentDuration = seconds;
+    notifyListeners();
+  }
+
+  void handleNextRound() {
+    if (currentState == "FOCUS" && rounds != 3) {
+      currentState = "BREAK";
+      currentDuration = 300;
+      selectedTime = 300;
+      rounds++;
+      goal++;
+    } else if (currentState == "BREAK") {
+      currentState = "FOCUS";
+      currentDuration = 1500;
+      selectedTime = 1500;
+    } else if (currentState == "FOCUS" && rounds == 3) {
+      currentState = "LONG BREAK";
+      currentDuration = 1500;
+      selectedTime = 1500;
+      rounds++;
+      goal++;
+    } else if (currentState == "LONG BREAK") {
+      currentState = "FOCUS";
+      currentDuration = 1500;
+      selectedTime = 1500;
+      rounds = 0;
+    }
+
+    notifyListeners();
+  }
 }

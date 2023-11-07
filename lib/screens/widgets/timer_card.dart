@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../timer_service.dart';
+import 'package:myth_green_pomodoro_app/screens/timer_service.dart';
 
 class TimerCard extends StatelessWidget {
   const TimerCard({super.key});

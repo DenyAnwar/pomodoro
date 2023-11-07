@@ -3,9 +3,12 @@ import 'package:provider/provider.dart';
 
 import 'package:myth_green_pomodoro_app/screens/widgets/timer_card.dart';
 import 'package:myth_green_pomodoro_app/screens/timer_service.dart';
+import 'package:myth_green_pomodoro_app/screens/widgets/timer_options.dart';
+import 'package:myth_green_pomodoro_app/screens/widgets/time_controller.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
+
   Color renderColor(String currentState) {
     if (currentState == "FOCUS") {
       return Colors.redAccent;
@@ -42,17 +45,18 @@ class HomeScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Container(
           alignment: Alignment.center,
-          child: const Column(
+          child: Column(
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 40,
               ),
-              TimerCard(),
-              SizedBox(height: 50),
-              // TimerOptions(),
-              SizedBox(
+              const TimerCard(),
+              const SizedBox(height: 50),
+              TimerOptions(),
+              const SizedBox(
                 height: 100,
-              )
+              ),
+              const TimeController(),
             ],
           ),
         ),
