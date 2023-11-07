@@ -1,6 +1,6 @@
-# myth_green_pomodoro_app
+# pomodoro_app
 
-A new Flutter project.
+Pomodoro app powered by flutter
 
 ## Getting Started
 
