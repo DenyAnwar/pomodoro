@@ -8,6 +8,7 @@ class TimerOptions extends StatelessWidget {
   TimerOptions({super.key});
 
   final List selectableTimes = [
+    "10",
     "300",
     "600",
     "900",

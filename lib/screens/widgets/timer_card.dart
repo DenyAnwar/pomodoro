@@ -9,6 +9,7 @@ class TimerCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<TimerService>(context);
+
     return Column(children: [
       Text(
         provider.currentState,

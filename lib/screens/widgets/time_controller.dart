@@ -23,16 +23,16 @@ class _TimeControllerState extends State<TimeController> {
       ),
       child: Center(
         child: IconButton(
-          onPressed: () {
-            provider.timerPlaying
-                ? Provider.of<TimerService>(context, listen: false).pause()
-                : Provider.of<TimerService>(context, listen: false).start();
-          },
           icon: provider.timerPlaying
               ? const Icon(Icons.pause)
               : const Icon(Icons.play_arrow_sharp),
           iconSize: 55,
           color: Colors.white,
+          onPressed: () {
+            provider.timerPlaying
+                ? Provider.of<TimerService>(context, listen: false).pause()
+                : Provider.of<TimerService>(context, listen: false).start();
+          },
         ),
       ),
     );

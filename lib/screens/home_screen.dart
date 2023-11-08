@@ -5,6 +5,7 @@ import 'package:myth_green_pomodoro_app/screens/widgets/timer_card.dart';
 import 'package:myth_green_pomodoro_app/screens/timer_service.dart';
 import 'package:myth_green_pomodoro_app/screens/widgets/timer_options.dart';
 import 'package:myth_green_pomodoro_app/screens/widgets/time_controller.dart';
+import 'package:myth_green_pomodoro_app/screens/widgets/progress.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -57,6 +58,10 @@ class HomeScreen extends StatelessWidget {
                 height: 100,
               ),
               const TimeController(),
+              const SizedBox(
+                height: 50,
+              ),
+              const Progress(),
             ],
           ),
         ),

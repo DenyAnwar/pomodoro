@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:audioplayers/audioplayers.dart';
 
 class TimerService extends ChangeNotifier {
   late Timer timer;
@@ -9,6 +10,8 @@ class TimerService extends ChangeNotifier {
   int rounds = 0;
   int goal = 0;
   String currentState = "FOCUS";
+  final player = AudioPlayer();
+  var alarmAudioPath = 'sound_alarm.mp3';
 
   void start() {
     timerPlaying = true;
@@ -52,6 +55,7 @@ class TimerService extends ChangeNotifier {
       selectedTime = 300;
       rounds++;
       goal++;
+      player.play(AssetSource(alarmAudioPath));
     } else if (currentState == "BREAK") {
       currentState = "FOCUS";
       currentDuration = 1500;
@@ -62,6 +66,7 @@ class TimerService extends ChangeNotifier {
       selectedTime = 1500;
       rounds++;
       goal++;
+      player.play(AssetSource(alarmAudioPath));
     } else if (currentState == "LONG BREAK") {
       currentState = "FOCUS";
       currentDuration = 1500;
