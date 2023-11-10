@@ -18,6 +18,7 @@ class TimerService extends ChangeNotifier {
     timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       if (currentDuration == 0) {
         handleNextRound();
+        player.play(AssetSource(alarmAudioPath));
       } else {
         currentDuration--;
         notifyListeners();
@@ -49,13 +50,17 @@ class TimerService extends ChangeNotifier {
   }
 
   void handleNextRound() {
-    if (currentState == "FOCUS" && rounds != 3) {
+    if (goal == 13) {
+      currentState = "FOCUS";
+      currentDuration = 300;
+      selectedTime = 1500;
+      goal = 0;
+    } else if (currentState == "FOCUS" && rounds != 3) {
       currentState = "BREAK";
       currentDuration = 300;
-      selectedTime = 300;
+      // selectedTime = 1500;
       rounds++;
       goal++;
-      player.play(AssetSource(alarmAudioPath));
     } else if (currentState == "BREAK") {
       currentState = "FOCUS";
       currentDuration = 1500;
@@ -63,10 +68,9 @@ class TimerService extends ChangeNotifier {
     } else if (currentState == "FOCUS" && rounds == 3) {
       currentState = "LONG BREAK";
       currentDuration = 1500;
-      selectedTime = 1500;
+      // selectedTime = 1500;
       rounds++;
       goal++;
-      player.play(AssetSource(alarmAudioPath));
     } else if (currentState == "LONG BREAK") {
       currentState = "FOCUS";
       currentDuration = 1500;

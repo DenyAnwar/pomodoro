@@ -27,7 +27,7 @@ class HomeScreen extends StatelessWidget {
         elevation: 10,
         backgroundColor: renderColor(provider.currentState),
         title: const Text(
-          'POMOTIMER',
+          'POMODORO TIMER',
           style: TextStyle(
             fontSize: 25,
             fontWeight: FontWeight.w700,
@@ -52,8 +52,15 @@ class HomeScreen extends StatelessWidget {
                 height: 40,
               ),
               const TimerCard(),
-              const SizedBox(height: 50),
-              TimerOptions(),
+              const SizedBox(
+                height: 50,
+              ),
+              if (provider.currentState != "BREAK")
+                TimerOptions()
+              else
+                const SizedBox(
+                  height: 50,
+                ),
               const SizedBox(
                 height: 100,
               ),
